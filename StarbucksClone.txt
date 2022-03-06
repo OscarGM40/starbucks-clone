@@ -1,0 +1,33 @@
+			CLONE DE STARBUCKS CON REDUX-FIREBASE + FRAMER-MOTION
+
+Video: https://www.youtube.com/watch?v=OXkqfbmePDA&t=291s&ab_channel=ILWYennefer
+Repo: 
+Crearemos un clon de starbucks,usaremos react-hooks-form para el formulario y Firebase como BaaS.Será un diseño responsive
+Usaré react-awesome-reveal para scrollear con fadeIn.
+Usaré la framer Motion API para animaciones
+Usaremos @redux/toolkit para el state management.Puedo usar su starter,tanto para JS como para TS:
+
+# Redux + Plain JS template
+npx create-react-app my-app --template redux
+
+# Redux + TypeScript template
+npx create-react-app my-app --template redux-typescript
+
+Instalo el que quiera y puedo ir creando un proyecto en Firebase.Vamos a añadir las dependencias,lo mejor será seguir con las que usó él.
+
+Fijate que al usasr css puro es buena idea usar BEM,intenta darte cuenta del sindrome del impostor
+
+En cuanto a la impl de react-awesome-reveal no puede ser más fácil:
+import { Fade } from "react-awesome-reveal";
+  <Fade>
+    <Footer />
+  </Fade>
+Obviamente hay muchas cosas por configurar como props en <Fade>
+
+					INTRO A FRAMER MOTION API MINUTO 37
+
+
+Esta libreria ofrece ejemplos para animaciones,transformaciones,gestos,...
+Tiene una buena documentación y puedo abrir los ejemplos en sandbox.
+Realmente es bastante extensa,aunque tiene buen soporte para TS,ver proyecto.
+1h20m
