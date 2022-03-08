@@ -24,10 +24,48 @@ import { Fade } from "react-awesome-reveal";
   </Fade>
 Obviamente hay muchas cosas por configurar como props en <Fade>
 
-					INTRO A FRAMER MOTION API MINUTO 37
+		INTRO A FRAMER MOTION API MINUTO 37
 
 
 Esta libreria ofrece ejemplos para animaciones,transformaciones,gestos,...
 Tiene una buena documentación y puedo abrir los ejemplos en sandbox.
 Realmente es bastante extensa,aunque tiene buen soporte para TS,ver proyecto.
-1h20m
+Recuerda que en Material UI se cambia el tamaño del icono con fontSize y que son un Componente en sí,asi que puedo retornarlos,etc:
+ {goBackIcon && <ChevronLeftRoundedIcon fontSize="large" />}
+  {link}
+ {icon && <ChevronRightRoundedIcon fontSize="large" />}
+
+			 ELEMENTOS EN LINEA CONTRA BLOQUE
+
+EN LINEA:
+Explicandolo de manera sencilla,ciertas etiquetas HTML no afectán en absoluto al flujo de los demás elementos,limitándose a marcar ciertos elementos con una determinada semántica y dejando que el texto y otros elementos contigüos sigan fluyendo en la misma línea(bloque) colocandose a ambos lados de dicho elemento.Resumen:se colocan a los lados.
+Ejemplos son las etiquetas <a>,<em><del>,<span>.
+A estos elementos se les llama elements en linea
+
+IMPORTANTE: en los elementos en linea no se respetan LOS ANCHOS,LOS ALTOS NI LOS MÁRGENES VERTICALES
+
+EN BLOQUE:
+Por el contrario,ciertas etiquetas se renderizan en el navegador en líneas independientes,no mezcladas con el resto del texto.Como ejemplos los headings,los div,los p,etc.
+NOTA:LOS ELEMENTOS DE BLOQUE SI RESPETAN LOS ANCHOS,ALTOS Y MARGENES VERTICALES,A DIFERENCIA DE LOS INLINE
+
+INLINE-BLOCK:
+es posible mezclar ambas disposiciones aplicando css y la propiedad display.Hay un tercer valor que es mezcla de ambos,asi usar la disposición inline-block hara que el elemento respete los anchos,altos y margenes(pero no ocupa la linea entera,ojo).Como puedo ver combina los dos anteriores,básicamente es un elemento inline que respetará anchos,altos y margenes verticales
+
+TIP: También puedo ver a display:inline-block como un display:block pero que no añade el salto de linea al final del elemento,pudiendo meter más en la misma linea
+
+Ahora si,ya entiendo porque poner al <Link> en inline-block,ya que respetará alturas,anchos,margenes pero además me permite meter más en la misma linea.Genial.
+
+Fijate el componente Featured que bonito lo hizo y como le ha pasado hasta el color del background,el color del texto,la imagen o la className,realmente React es muy buena elección para esto:
+
+    <Featured
+       title="PISTACHIOOOOOOO"
+       info="Embrace creamy coffee bliss with our new Pistachio Latte and Pistachio Frappuccino® blended beverage."
+       link="Try the new pistachio drinks"
+       path=""
+       image="https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-67826.png"
+       order="2"
+       background="#f0ebe0"
+       color="#1e3932"
+       className="featured__hoverLight"
+ />
+Incluso le va a mandar el order.Amazing.Fijate que también usamos otro componente Info.Son muy parecidos,pero uno ocupa el 100% del ancho y el otro el 50%.

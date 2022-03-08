@@ -1,5 +1,6 @@
-interface Props {}
-const LogoutButton = (props: Props) => {
+import './logoutButton.css';
+
+const LogoutButton = () => {
   return (
     <div>LogoutButton</div>
   )

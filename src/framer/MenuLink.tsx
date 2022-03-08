@@ -1,4 +1,3 @@
-import * as React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
@@ -21,8 +20,6 @@ const variants = {
   },
 };
 
-// const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
-
 interface Props {
   link: string;
   onClick?: () => void;
@@ -31,6 +28,7 @@ interface Props {
   goBackIcon?: boolean;
   icon?: boolean;
 }
+
 export const MenuLink = ({
   link,
   path,
@@ -49,6 +47,7 @@ export const MenuLink = ({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
+          {/* si es hacia atras va antes,sino despues de la label */}
           {goBackIcon && <ChevronLeftRoundedIcon fontSize="large" />}
           {link}
           {icon && <ChevronRightRoundedIcon fontSize="large" />}

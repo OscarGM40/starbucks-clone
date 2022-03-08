@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useAppSelector } from "../app/hooks";
 import { FindAStore } from "../components/FindAStore";
+import LogoutButton from "../components/LogoutButton";
+import SignInButton from "../components/SignInButton";
+import SignUpButton from "../components/SignUpButton";
 import { MenuLink } from "./MenuLink";
 
 const variants = {
@@ -34,6 +38,8 @@ interface Props {
 }
 export const Navigation = ({ toggle }: Props) => {
   const [showMenuCategories, setShowMenuCategories] = useState(false);
+  const user = useAppSelector(state => state.user.user);
+
 
   return (
     <>
@@ -85,18 +91,18 @@ export const Navigation = ({ toggle }: Props) => {
           />
           <MenuLink link="Rewards" />
           <MenuLink link="Gift Cards" />
-          {/* para acceder a variants tiene que ser un motion.hr */}
+          {/* para acceder a variants tiene que ser un motion.<xx> */}
           <motion.hr variants={variants2} />
           <motion.div className="navigation__buttons" variants={variants2}>
             {/* TODO impl User with redux */}
-      {/*       {!user ? (
+             {!user ? (
               <>
                 <SignInButton />
                 <SignUpButton />
               </>
             ) : (
               <LogoutButton />
-            )} */}
+            )} 
           </motion.div>
           <motion.div variants={variants2}>
             <FindAStore />

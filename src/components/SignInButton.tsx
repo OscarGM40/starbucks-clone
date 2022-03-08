@@ -1,7 +1,11 @@
-interface Props {}
-const SignInButton = (props: Props) => {
+import { Link } from "react-router-dom";
+import "./signInButton.css";
+
+const SignInButton = () => {
   return (
-    <div>SignInButton</div>
-  )
-}
-export default SignInButton
+    <Link to="/account/signin" className="signInButton">
+      Sign In
+    </Link>
+  );
+};
+export default SignInButton;

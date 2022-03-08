@@ -14,7 +14,7 @@ const Header = ({ menuPage }: Props) => {
   const { user } = useAppSelector((state) => state.user);
 
   return (
-    <div className="header">
+    <div className={`header ${menuPage && "header__menuPage"}`}>
       <div className="header__left">
         <Link className="header__logo" to="/">
           <img
@@ -40,12 +40,8 @@ const Header = ({ menuPage }: Props) => {
         {/* USER HERE */}
         {!user ? (
           <>
-            <Link to="/account/signin">
               <SignInButton />
-            </Link>
-            <Link to="/account/signup">
               <SignUpButton />
-            </Link>
           </>
         ) : (
           <div className="header__logout">
