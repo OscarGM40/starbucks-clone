@@ -68,7 +68,7 @@
   font-size: 19px;
   font-weight: 600;
   line-height: 1.7;
-  max-width: 450px;
+  max-width: 700px;
 }
 
 .homeScreen__bottomLeft > button {
@@ -94,4 +94,9 @@
 
 .homeScreen__bottomLeft > button:hover {
   background-color: rgba(30, 57, 50, 0.1);
+}
+
+.homeScreen__bottomRight > img {
+  object-fit: contain;
+  max-width:900px;
 }

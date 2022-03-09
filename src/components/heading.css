@@ -12,9 +12,3 @@
     font-size: 28px;
   }
 }
-
-@media (max-width: 425px) {
-  .heading {
-    font-size: 28px;
-  }
-}

@@ -41,6 +41,7 @@ const HomeScreen = () => {
       <Fade>
         <Heading heading="TODAY IS YOURS" />
       </Fade>
+      
       <div className="homeScreen__featured">
         <Fade>
           <Featured

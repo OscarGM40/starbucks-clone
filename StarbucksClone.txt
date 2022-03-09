@@ -15,7 +15,7 @@ npx create-react-app my-app --template redux-typescript
 
 Instalo el que quiera y puedo ir creando un proyecto en Firebase.Vamos a añadir las dependencias,lo mejor será seguir con las que usó él.
 
-Fijate que al usasr css puro es buena idea usar BEM,intenta darte cuenta del sindrome del impostor
+Fijate que al usar css puro es buena idea usar BEM,intenta darte cuenta del sindrome del impostor
 
 En cuanto a la impl de react-awesome-reveal no puede ser más fácil:
 import { Fade } from "react-awesome-reveal";
@@ -25,7 +25,6 @@ import { Fade } from "react-awesome-reveal";
 Obviamente hay muchas cosas por configurar como props en <Fade>
 
 		INTRO A FRAMER MOTION API MINUTO 37
-
 
 Esta libreria ofrece ejemplos para animaciones,transformaciones,gestos,...
 Tiene una buena documentación y puedo abrir los ejemplos en sandbox.
@@ -68,4 +67,6 @@ Fijate el componente Featured que bonito lo hizo y como le ha pasado hasta el co
        color="#1e3932"
        className="featured__hoverLight"
  />
+
 Incluso le va a mandar el order.Amazing.Fijate que también usamos otro componente Info.Son muy parecidos,pero uno ocupa el 100% del ancho y el otro el 50%.
+2h23
