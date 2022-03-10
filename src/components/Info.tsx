@@ -1,4 +1,5 @@
-import './info.css';
+import { Link } from "react-router-dom";
+import "./info.css";
 
 type Props = {
   title: string;
@@ -8,6 +9,7 @@ type Props = {
   color: string;
   background: string;
   className: string;
+  path?: string;
 };
 export const Info = ({
   title,
@@ -16,7 +18,26 @@ export const Info = ({
   link,
   color,
   background,
+  path,
   className,
 }: Props) => {
-  return <div>Info</div>;
+  return (
+    <div
+      className="info"
+      style={{
+        color,
+        background,
+      }}
+    >
+      <img src={image} alt={title} className="info__image" />
+      <div className="info__text">
+        <h4>{title}</h4>
+        <h6>{info}</h6>
+        <Link to={path || "/"} style={{ color }} className={className}>
+          {link}
+        </Link>
+      </div>
+    </div>
+
+);
 };

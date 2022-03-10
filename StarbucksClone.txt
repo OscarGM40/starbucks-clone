@@ -70,3 +70,76 @@ Fijate el componente Featured que bonito lo hizo y como le ha pasado hasta el co
 
 Incluso le va a mandar el order.Amazing.Fijate que también usamos otro componente Info.Son muy parecidos,pero uno ocupa el 100% del ancho y el otro el 50%.
 2h23
+Fijate de nuevo como puedo pasar un color para el background a un componente:
+<Featured 
+  background="#34ffe2"
+
+Y luego cuando lo reciba lo mando en un style inline:
+<div style={{background}} <- fijate que me viene "#34ffe2
+
+Lo mismo para el order y el color.Muy pro:
+<div className="featured__left" style={{ order, color }}>
+
+Es importante dar un valor a alt si quiero mejorar el SEO.
+<img src={image} alt={title} /> <- supongo que laboralmente debo usarlo.
+
+Fijate de nuevo que facil es crear varios componentes que reciban el color y el fondo por props:
+    <div
+       className="info"
+       style={{
+         color,
+          background,
+     }}
+     >
+   fijate que el ContentPlaceholder es el contenido del acordeón.
+
+IMPORTANTE: toda website moderna debe tener el icono para mostrar/ocultar la password.Fijate que realmente simplemente consiste en cambiar el type del input(de text a password)No tiene más ciencia,declaro un state,declaro un input type condicionalmente y en cada click sobre el icono lo invierto:
+
+const [passwordShown, setPasswordShown] = useState(false);
+
+ <input  type={passwordShown ? "text" : "password"}  <- esto es la clave,asinto,fijate
+ Le meto unos iconos apropiados,etc...:
+  {/* toggleVisibility for password */}
+   {passwordShown ? ( <VisibilityOutlinedIcon
+     onClick={() => setPasswordShown(!passwordShown)}
+     className="loginScreen__visibilityIcon"
+    />
+   ) : (
+   <VisibilityOffOutlinedIcon
+    onClick={() => setPasswordShown(!passwordShown)}
+    className="loginScreen__visibilityIcon"
+    />
+  )}
+
+IMPORTANTE: para una mejora en la validación de react-hooks-form puedo pasarle un schema con Yup:
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+interface IFormInputs {
+  firstName: string
+  age: number
+ }
+
+ const schema = yup.object({
+   firstName: yup.string().required(),
+   age: yup.number().positive().integer().required(),
+  }).required();
+
+const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+  resolver: yupResolver(schema)
+  });
+Simplemente hay que pasarle el schema a la propiedad resolver al iniciar el hook(que obviamente es todo el formulario).
+Se imprimen los errores con la propiedad message:
+<p>{errors.age?.message}</p>
+Recuerda que puedo targetear a una clase de Material UI como por ejemplo la que usará cualquier icono:
+
+.loginScreen__error > .MuiSvgIcon-root {
+  color: #e75b52;
+  }
+
+  Fijate,cuando tenga varias transiciones lo mejor es usar la propiedad transition-property y listarlas separadas por comas:
+ transition-duration: 0.2s;
+ transition-property: transform, box-shadow, width, height;
+ transition-timing-function: ease;
+ Obviamente tengo que usar transition-timing-function también.Genial.
+ 4h49m

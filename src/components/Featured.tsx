@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './featured.css'
 
 type Props = {
   title: string;
@@ -32,7 +33,7 @@ export const Featured = ({
         </Link>
       </div>
       <div className="featured__right">
-        <img src={image} alt="" />
+        <img src={image} alt={title} />
       </div>
     </div>
   );
