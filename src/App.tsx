@@ -10,28 +10,51 @@ import HomeScreen from "./screens/HomeScreen";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { LoginScreen } from "./screens/LoginScreen";
-import { useAppSelector } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useEffect } from "react";
+import { firebaseAuth } from "./firebase";
+import { login, logout } from "./features/userSlice";
+import { SignupScreen } from "./screens/SignupScreen";
 
 function App() {
+  const user = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
 
-  const user = useAppSelector(state => state.user.user);
-  
+  useEffect(() => {
+    firebaseAuth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        /* user esta logeado */
+        dispatch(
+          login({
+            email: userAuth.email!,
+            uid: userAuth.uid,
+            displayName: userAuth.displayName!,
+          })
+        );
+      } else {
+        dispatch(logout());
+      }
+    });
+  }, [dispatch]);
+
   return (
     <div className="app">
       <Router>
-          <Switch>
-            <Route exact path="/">
-              <Header />
-              <HomeScreen />
-              <Fade>
-                <Footer />
-              </Fade>
-            </Route>
-            <Route exact path="/account/signin">
-              {user ? <Redirect to="/menu" /> : <LoginScreen />}
-              
-              </Route>
-          </Switch>
+        <Switch>
+          <Route exact path="/">
+            <Header />
+            <HomeScreen />
+            <Fade>
+              <Footer />
+            </Fade>
+          </Route>
+          <Route path="/account/signin">
+            {user ? <Redirect to="/menu" /> : <LoginScreen />}
+          </Route>
+          <Route path="/account/create">
+            {user ? <Redirect to="/menu" /> : <SignupScreen />}
+          </Route>
+        </Switch>
       </Router>
     </div>
   );

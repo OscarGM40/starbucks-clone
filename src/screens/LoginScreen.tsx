@@ -11,6 +11,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FooterSecondary } from "../components/FooterSecondary";
 import { FormSubmit } from "../components/FormSubmit";
+import { firebaseAuth } from "../firebase";
+import { useAppDispatch } from "../app/hooks";
+import { login } from "../features/userSlice";
 
 
 /* aqui irán los campos del formulario con su tipado */
@@ -28,22 +31,32 @@ export const LoginScreen = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm<Inputs>({
     resolver:yupResolver(schema)
   });
 
   const [passwordShown, setPasswordShown] = useState(false);
+  const dispatch = useAppDispatch();
 
   /* data serán los campos(data.email,data.name,etc...) */
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
+    firebaseAuth.signInWithEmailAndPassword(data.email,data.password)
+    .then( (userAuth) => {
+      dispatch(login({
+        email: userAuth.user?.email!,
+        uid:userAuth.user?.uid!,
+        displayName:userAuth.user?.displayName!
+      }))
+    })
+    .catch((error) => alert(error.message))
   };
 
   /* con console.log(watch(fieldName) puedo ver el value en cada onChange si fuera necesario) */
-  console.log(watch("email"));
-  console.log(watch("password"));
+  // console.log(watch("email"));
+  // console.log(watch("password"));
 
   return (
     <div className="loginScreen">
@@ -62,7 +75,7 @@ export const LoginScreen = () => {
 
       <div className="loginScreen__right">
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" <- te cagas */}
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
+        <form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
           {/* debo registrar cada nuevo control en el hook invocando a register */}
           {/* fijate que además lo vamos a combinar con material */}
           <div className="loginScreen__inputContainer">

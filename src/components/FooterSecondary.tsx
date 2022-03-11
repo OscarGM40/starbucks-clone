@@ -3,7 +3,7 @@ import { FindAStore } from "./FindAStore";
 import "./footerSecondary.css";
 
 type Props = {
-  paddingLeft: number;
+  paddingLeft?: number;
   flexDirection: "row" | "row-reverse" | "column" | "column-reverse";
   alignItems?: string;
 };
@@ -15,7 +15,7 @@ export const FooterSecondary = ({
   return (
     <div
       className="footerSecondary"
-      style={{ alignItems, paddingLeft: `${paddingLeft * 2}px` }}
+      style={{ alignItems, paddingLeft: `${paddingLeft || 5 * 2}px` }}
     >
       <div
         className="footerSecondary__container"

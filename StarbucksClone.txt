@@ -142,4 +142,14 @@ Recuerda que puedo targetear a una clase de Material UI como por ejemplo la que 
  transition-property: transform, box-shadow, width, height;
  transition-timing-function: ease;
  Obviamente tengo que usar transition-timing-function también.Genial.
- 4h49m
+
+			SETTING FIREBASE AND CUSTOM AUTH
+
+EStablecer el módulo Auth no puede ser más fácil:
+import firebase from firebase;
+const firebaseConfig = { ..}
+const firebaseApp= firebase.initializeApp(firebaseConfig).
+const firebaseAuth= firebaseApp.auth()
+export { firebaseAuth} <- lógicamente esto es para la v8 pero la clave es que firebaseAuth se apoyará en firebaseApp,ojo,en la instancia ya configurada en la linea anterior.
+5h35m
+
