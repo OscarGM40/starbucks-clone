@@ -9,6 +9,10 @@ import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined"
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import { useState } from "react";
 import { FormSubmit } from "./FormSubmit";
+import { firebaseAuth } from "../firebase";
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
+import { useHistory } from "react-router-dom";
 
 type Inputs = {
   fName: string;
@@ -33,9 +37,35 @@ export const SignupForm = () => {
     resolver: yupResolver(schema),
   });
   const [passwordShown, setPasswordShown] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = ({
+    fName,
+    lName,
+    email,
+    password,
+  }) => {
+    firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        /* la clave esta en que updateProfile({}) me deja actualizar el usuario con lo que quiera?? */
+        userAuth.user
+          ?.updateProfile({
+            displayName: fName,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userAuth.user?.email!,
+                uid: userAuth.user?.uid!,
+                displayName: fName!,
+              })
+            );
+            history.replace("/menu");
+          });
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -102,12 +132,12 @@ export const SignupForm = () => {
                 />
               </div>
             )}
-          </div>{" "}
+          </div>
           {/* end of input */}
           <h4 className="signupForm__section">Account Security</h4>
           <div className="signupForm__inputContainer">
             <TextField
-              label="email"
+              label="Email address"
               {...register("email")}
               name="email"
               type="email"
@@ -133,7 +163,7 @@ export const SignupForm = () => {
                 />
               </div>
             )}
-          </div>{" "}
+          </div>
           {/* end of input */}
           <div className="signupForm__inputContainer">
             <TextField

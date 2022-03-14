@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import { firebaseAuth } from "./firebase";
 import { login, logout } from "./features/userSlice";
 import { SignupScreen } from "./screens/SignupScreen";
+import { MenuScreen } from "./screens/MenuScreen";
+import { FeaturedScreen } from "./screens/FeaturedScreen";
 
 function App() {
   const user = useAppSelector((state) => state.user.user);
@@ -48,11 +50,28 @@ function App() {
               <Footer />
             </Fade>
           </Route>
-          <Route path="/account/signin">
+          <Route exact path="/account/signin">
             {user ? <Redirect to="/menu" /> : <LoginScreen />}
           </Route>
-          <Route path="/account/create">
+          <Route exact path="/account/create">
             {user ? <Redirect to="/menu" /> : <SignupScreen />}
+          </Route>
+          <Route exact path="/menu">
+            {!user ? (
+              <Redirect to="/account/signin" />
+            ) : (
+              <>
+                <Header menuPage />
+                <MenuScreen />
+              </>
+            )}
+          </Route>
+          <Route exact path="/menu/featured">
+            <Header />
+            <FeaturedScreen />
+            <Fade>
+              <Footer />
+            </Fade>
           </Route>
         </Switch>
       </Router>

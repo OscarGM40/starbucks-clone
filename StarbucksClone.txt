@@ -151,5 +151,6 @@ const firebaseConfig = { ..}
 const firebaseApp= firebase.initializeApp(firebaseConfig).
 const firebaseAuth= firebaseApp.auth()
 export { firebaseAuth} <- lógicamente esto es para la v8 pero la clave es que firebaseAuth se apoyará en firebaseApp,ojo,en la instancia ya configurada en la linea anterior.
-5h35m
+Fijate que hasta ahora he usado siempre gap pero realmente puedo fragmentarlo en column-gap y row-gap si quisiera
+Mas o menos fue continuar con todo,realmente no es una web muy difícil.IMportante entender que fue buena práctica,siempre es buena práctica.
 
